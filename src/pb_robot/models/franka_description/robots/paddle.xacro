@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="paddle" params="ns">
+
+    <link name="${ns}_paddle">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://franka_description/meshes/visual/paddle.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://franka_description/meshes/collision/paddle.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.02"/>
+        <inertia ixx="0.00002659" ixy="0.0" ixz="0.0"
+                 iyx="0.0" iyy="0.0" iyz="0.0"
+                 izx="0.0" izy="0.0" izz="0.00001824"/>
+      </inertial>
+
+    </link>
+
+    <joint name="${ns}_paddle_joint" type="fixed">
+      <parent link="${ns}_hand"/>
+      <child link="${ns}_paddle"/>
+      <origin xyz="0.0 0.0 0.1" rpy="1.57 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>  
